@@ -1,0 +1,21 @@
+[
+	{ "id": "MyBatisTools", "caption" : "myBatis工具集合", "children": [ 
+		{ "id" : "MyBatisTitle", "caption" : "插入MyBatis表头", "command" : "my_batis_title" },
+		{ "id" : "MyBatis", "caption" : "生成所有文件", "command" : "my_batis" },
+		{ "id" : "MyBatisBean", "caption" : "生成bean", "command" : "my_batis", "args": {"createFileName": "bean"}, },
+		{ "id" : "MyBatisDao", "caption" : "生成dao", "command" : "my_batis", "args": {"createFileName": "dao"}, },
+		{ "id" : "MyBatisMap", "caption" : "生成map", "command" : "my_batis", "args": {"createFileName": "map"}, },
+		{ "id" : "MyBatisService", "caption" : "生成service", "command" : "my_batis", "args": {"createFileName": "service"}, },
+		{ "id" : "MyBatisController", "caption" : "生成controller", "command" : "my_batis", "args": {"createFileName": "controller"}, },
+		{ "id" : "MyBatisOther", "caption" : "生成other", "command" : "my_batis", "args": {"createFileName": "other"}, },
+		{ "id" : "MyBatisHtml", "caption" : "生成html", "command" : "my_batis", "args": {"createFileName": "html"}, },
+	] },
+	{ "id": "Tools", "caption" : "文本工具集合", "children": [ 
+		{ "id" : "ChangId", "caption" : "顺延id", "command" : "chang_id", "args": {"isSequen": "false"}, },
+		{ "id" : "ChangId2", "caption" : "倒叙id", "command" : "chang_id", "args": {"isSequen": "true"}, },
+		{ "id" : "SelectLen", "caption" : "字符长度", "command" : "get_select_len" },
+		{ "id" : "SetSelectCharUpper", "caption" : "转大写", "command" : "set_select_char_upper" },
+		{ "id" : "SetSelectCharLower", "caption" : "转小写", "command" : "set_select_char_upper", "args": {"isupper": "False"}, },
+		{ "id" : "SetSelectCharHump_", "caption" : "_转驼峰写法", "command" : "set_select_char_hump" }
+	] }
+]

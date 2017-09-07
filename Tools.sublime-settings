@@ -1,0 +1,85 @@
+{
+	// 作者
+	"author": "CC",
+
+	// 表头
+	"MyBatisTitle": {
+		"APIPROJECTPATH" : "api项目路径",
+		"APIPACKAGE" : "api包名",
+		"SERVICEPROJECTPATH" : "service项目路径",
+		"SERVICEPACKAGE" : "service包名",
+		"PROJECTPATH" : "项目路径",
+		"PACKAGE" : "项目包名",
+		"MYBATIS" : "Mapper 文件夹，多级使用.分隔"
+	},
+
+	// 解析的文本关键字，"False"为解析，否则为忽略
+	"sqlKey": {
+		"#": true,
+		"CREATE TABLE": false,	// 生成表
+		"`":false,	// 获取字段
+		") ENGINE=INNODB": false,	// 获取全表注释
+
+		"PACKAGE":false,	// 获取包名
+		"PROJECTPATH":false,	// 获取项目路径
+		"APIPROJECTPATH":false,
+		"APIPACKAGE":false,
+		"SERVICEPROJECTPATH":false,
+		"SERVICEPACKAGE":false,
+		"MYBATIS":false,
+	},
+
+	// 忽略的表名关键字
+	"ignoSqlTableNameKey": ["t","sp","pt","cg","ct","sh","em","ex","gd","mb","md","pm","pp","sa","stat","sys"],
+
+	// sql转java类型表
+	"sqlToJavaType": {
+		"int": "Integer",
+		"tinyint": "Boolean",
+		"varchar": "String",
+		"text": "String",
+		"timestamp": "Date",
+
+		"smallint": "Integer",
+		"mediumint": "Integer",
+		"integer": "Integer",
+		"bigint": "Integer",
+		"bit": "Integer",
+	},
+
+	// 默认包名
+	"defaultPackageName": "com.cc.package.*",
+
+	// 忽略的字段名
+	"ignoredField": {
+		"insertTime": true,
+		"updateTime": true,
+		"id": true,
+	},
+
+	// html模板
+	"htmlTemp": {
+		"list": "<div ng-controller=\"path-nameListCtrl\">\n\t<div class=\"bg-light lter b-b wrapper-sm page-title clearfix\">\n\t\t<h1 translate=\"\" class=\"m-n font-thin text-md font-bold pull-left\">列表</h1>\n\t\t<span class=\"v-line pull-left m-l-sm text-2x\">|</span>\n\t\t<button class=\"btn btn-info disabled cursor-default pull-left m-l-sm\" ng-click=\"reset()\">管理</button>\n\t\t<a translate=\"common.new\" href=\"#/url/html-edit-name\" class=\"pull-left m-l-md\">新增</a>\n\t</div>\n\t<div class=\"wrapper-md\">\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-body\">\n\n\t\t\t\t<form class=\"form-inline\" ng-submit=\"select()\" role=\"form\">\n\t\t\t\t\t<div class=\"form-group m-r-md\">\n\t\t\t\t\t\t<label>名称：</label>\n\t\t\t\t\t\t<input type=\"text\" class=\"form-control w-sm\" ng-model=\"formData.name\">\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<!-- \n\t\t\t\t\t<div class=\"form-group m-r-md m-t\">\n\t\t\t\t\t\t<label class=\"control-label m-r-sm\">类别:</label>\n\t\t\t\t\t\t<select name=\"type\" class=\"form-control\" ng-model=\"formData.type\" ng-options=\"index.id as index.name for index in type\">\n\t\t\t\t\t\t\t<option value=\"\">请选择</option>\n\t\t\t\t\t\t</select>\n\t\t\t\t\t</div>\n\t\t\t\t\t -->\n\n\t\t\t\t\t<div class=\"form-group m-r-md\">\n\t\t\t\t\t\t<button translate=\"common.query\" type=\"submit\" class=\"btn btn-sm btn-success m-r-xs query-btn\">查询</button>\n\t\t\t\t\t\t<button translate=\"common.reset\" type=\"button\" ng-click=\"reset()\" class=\"btn btn-sm btn-default reset-btn\">重置</button>\n\t\t\t\t\t</div>\n\t\t\t\t</form>\n\t\t\t</div>\n\n\t\t\t<table class=\"table zebra\">\n\t\t\t\t<thead>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<th width=\"55\"><label class=\"checkbox i-checks m-t-none m-b-none\"><select-all-checkbox checkboxes=\"data\"></select-all-checkbox><i></i></label></th>\nname-th\t\t\t\t\t\t<!-- <th class=\"text-left-i\">详情</th> -->\n\t\t\t\t\t\t<th class=\"text-left-i\">操作</th>\n\t\t\t\t\t</tr>\n\t\t\t\t</thead>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr ng-repeat=\"index in data\">\n\t\t\t\t\t\t<td class=\"text-center\" width=\"40px\" header=\"'ng-table/headers/checkbox.html'\"><label class=\"checkbox i-checks m-t-none m-r-none m-b-none\"><input type=\"checkbox\" ng-model=\"index.isSelected\"><i></i></label></td>\nval-td\t\t\t\t\t\t<!-- <td data-title=\"'详情'\"><a ng-href=\"#/url?id={{index.id}}\" target=\"_blank\" class=\"text-info small\">查看详情</a></td> -->\n\t\t\t\t\t<td data-title=\"'操作'\">\n\t\t\t\t\t\t<a href=\"{{editUrl}}?id={{index.id}}\" class=\"text-info small\">编辑</a>\n\t\t\t\t\t\t<b class=\"v-line\">|</b>\n\t\t\t\t\t\t<a href=\"\" class=\"text-info small\" ng-click=\"del({{index.id}})\">删除</a>\n\t\t\t\t\t</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t\t<div class=\"text-center-i l-h-20x text-md no-data\" ng-if=\"!totalItems\">\n\t\t\t\t<i class=\"fa fa-exclamation-circle\"></i>无数据\n\t\t\t</div> \n\t\t\t<footer class=\"panel-footer bg-light lter clearfix p-t\">\n\t\t\t\t<div class=\"pull-left text-center m-t\">\n\t\t\t\t\t<label class=\"checkbox i-checks m-t-xs m-r\"><select-all-checkbox checkboxes=\"data\"></select-all-checkbox><i></i>全选</label>\n\t\t\t\t</div>\n\t\t\t\t<button class=\"btn btn-primary pull-left m-t\" ng-click=\"deleteFn()\">删除</button>\n\t\t\t\t<pagination boundary-links=\"true\" rotate=\"false\" ng-change=\"pageChanged()\" total-items=\"totalItems\" ng-model=\"currentPage\" class=\"pagination-sm m-t-none m-b pull-right\" previous-text=\"&lsaquo;\" items-per-page=\"itemsPerPage\" next-text=\"&rsaquo;\" first-text=\"&laquo;\" last-text=\"&raquo;\" max-size=\"6\"></pagination>\n\t\t\t</footer>\n\t\t</div>\n\t</div>\n</div>",
+		"edit": "<div ng-controller=\"path-nameEditCtrl\">\n\t<div class=\"bg-light lter b-b wrapper-sm page-title clearfix\">\n\t\t<h1 class=\"m-n font-thin text-md font-bold pull-left\">编辑</h1>\n\t\t<span class=\"v-line pull-left m-l-sm text-2x\">|</span>\n\t\t<a href=\"javascript:;\" ng-click=\"back()\" class=\"pull-left m-l-sm\">管理</a>\n\t\t<button class=\"btn btn-info disabled cursor-default pull-left m-l-md\">{{titleText}}</button>\n\t</div>\n\t<div class=\"wrapper-md\">\n\t\t<div class=\"panel panel-default\">\n\t\t\t<div class=\"panel-body\">\n\t\t\t\t<form name=\"form\" ng-submit=\"edit()\" id=\"editForm\" class=\"form-horizontal form-validation\">\n\t\t\t\t\t<input type=\"hidden\" class=\"form-control\" ng-model=\"formData.id\">\n\nedit-string\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<div class=\"col-sm-2 col-sm-offset-1\">\n\t\t\t\t\t\t\t<button id=\"submit\" type=\"submit\" class=\"btn btn-primary m-r\" ng-disabled=\"form.$invalid\" disabled=\"disabled\">{{submitText}}</button>\n\t\t\t\t\t\t\t<button type=\"button\" ng-click=\"back()\" class=\"btn btn-default\">返回</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</form>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>",
+		"other" :"\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label class=\"col-sm-1 control-label\"><span class=\"color-red\">*</span>replace-name：</label>\n\t\t\t\t\t\t<div class=\"col-sm-2\">\n\t\t\t\t\t\t\t<input type=\"text\" name=\"replace-value\" id=\"replace-value\" class=\"form-control ng-pristine ng-untouched ng-invalid ng-valid-required\" required ng-model=\"formData.replace-value\">\n\t\t\t\t\t\t\t<span style=\"color: red\" ng-show=\"form.replace-value.$dirty && form.replace-value.$invalid\" class=\"help-block\">\n\t\t\t\t\t\t\t\t<span ng-show=\"form.replace-value.$error.required\" class=\"ng-hide\">replace-name不能为空</span>\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n",
+		"Date":"\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label class=\"col-sm-1 control-label\"><span class=\"color-red\">*</span>replace-name：</label>\n\t\t\t\t\t\t<div class=\"col-sm-2\">\n\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control date-input\" id=\"replace-value\" onClick=\"WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})\" ng-model=\"formData.replace-value\">\n\t\t\t\t\t\t\t<span class=\"input-group-btn\">\n\t\t\t\t\t\t\t\t<button onClick=\"WdatePicker({el: 'replace-value', dateFmt:'yyyy-MM-dd HH:mm:ss'})\" type=\"button\" class=\"btn btn-default\">\n\t\t\t\t\t\t\t\t\t<i class=\"glyphicon glyphicon-calendar\"></i>\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n",
+		"orderNum": "\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label class=\"col-sm-1 control-label\"><span class=\"color-red\">*</span>replace-name:</label>\n\t\t\t\t\t\t<div class=\"col-sm-2\">\n\t\t\t\t\t\t\t<input type=\"number\" min=\"0\" max=\"30000\" name=\"replace-value\" id=\"replace-value\" class=\"form-control ng-pristine ng-untouched ng-invalid ng-valid-required\" required ng-model=\"formData.replace-value\">\n\t\t\t\t\t\t\t<span style=\"color: red\" ng-show=\"form.replace-value.$dirty && form.replace-value.$invalid\" class=\"help-block\">\n\t\t\t\t\t\t\t\t<span ng-show=\"form.replace-value.$error.required\" class=\"ng-hide\">replace-name不能为空</span>\n\t\t\t\t\t\t\t\t<span ng-show=\"form.replace-value.$error.min || form.replace-value.$error.max\" class=\"ng-hide\">replace-name必须在0-30000之间</span>\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n",
+		"text": "\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label class=\"col-sm-1 control-label\"><span class=\"color-red\">*</span>replace-name:</label>\n\t\t\t\t\t\t<div class=\"col-sm-8\">\n\t\t\t\t\t\t\t<textarea rows=\"5\" cols=\"100\" name=\"desc\" id=\"desc2\" runat=\"server\"></textarea>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n",
+	},
+
+	// js模板
+	"jsTemp": {
+		"list": "app.controller('path-nameListCtrl', [ '$scope', '$location', function($scope, $location) {\n\n\tvar url = {\n\t\tgetData: BASE_URL + '/after/url-name/data?',\n\t\tdelUri: BASE_URL + '/after/url-name/deletes',\n\t}\n\n\t$scope.editUrl = '#/html-edit-name'\n\n\t$scope.typeCache = {}\n\t$scope.totalItems = 0\n\t$scope.currentPage = 1\n\t$scope.itemsPerPage = 10\n\n\tfunction getData() {\n\t\tvar param = 'pageSize=' + $scope.itemsPerPage + '&currPage=' + $scope.currentPage\n\t\t$.ajax({\n\t\t\turl : url.getData + param,\n\t\t\ttype : 'GET',\n\t\t\tdataType: 'json',\n\t\t\tdata: $scope.formData\n\t\t}).success(function(result){\n\t\t\tif (result.success) {\n\t\t\t\t$scope.$apply(function(){\n\t\t\t\t\t$scope.data = result.data\n\t\t\t\t\t$scope.totalItems = result.totalRows\n\t\t\t\t})\n\t\t\t} else {\n\t\t\t\tlayer.msg(result.msg)\n\t\t\t}\n\t\t})\n\t}\n\n\tfunction init() {\n\t\tgetData()\n\t}\n\n\t// 查询\n\t$scope.select = function() {\n\t\t$scope.currentPage = 1\n\t\tgetData()\n\t}\n\n\t$scope.reset = function() {\n\t\t$scope.formData = {}\n\t\t$scope.select()\n\t}\n\n\n\t$scope.pageChanged = function() {\n\t\tgetData()\n\t}\n\n\t$scope.del = function(id) {\n\t\tlayer.confirm('确定删除？', {\n\t\t\tbtn : [ '确定', '取消' ] // 按钮\n\t\t}, function(index) {\n\t\t\t$.ajax({\n\t\t\t\turl : url.delUri,\n\t\t\t\tmethod : 'POST',\n\t\t\t\tdataType : 'json',\n\t\t\t\tdata : {\n\t\t\t\t\tids : id\n\t\t\t\t}\n\t\t\t}).success(function(data) {\n\t\t\t\tif (data.success) {\n\t\t\t\t\tlayer.msg(data.msg)\n\t\t\t\t\tgetData()\n\t\t\t\t\tlayer.close(index)\n\t\t\t\t} else {\n\t\t\t\t\tlayer.msg(data.msg)\n\t\t\t\t}\n\t\t\t})\n\n\t\t}, function() {\n\t\t\t// 取消删除\n\t\t})\n\t}\n\n\t$scope.deleteFn = function() {\n\t\tvar isCheckedArr = []\n\t\t_.each($scope.data, function(item) {\n\t\t\tif (item.isSelected && !item.isSystem) {\n\t\t\t\tisCheckedArr.push(item.id)\n\t\t\t}\n\t\t})\n\t\tif (isCheckedArr.length < 1) {\n\t\t\tlayer.msg('未选择数据')\n\t\t\treturn\n\t\t}\n\t\tlayer.confirm('确定删除选中项？', {\n\t\t\tbtn : [ '确定', '取消' ]// 按钮\n\t\t// 不显示遮罩\n\t\t}, function(index) {\n\t\t\t$.ajax({\n\t\t\t\turl : url.delUri,\n\t\t\t\tmethod : 'POST',\n\t\t\t\tdataType : 'json',\n\t\t\t\tdata : {\n\t\t\t\t\tids : isCheckedArr.join(',')\n\t\t\t\t}\n\t\t\t}).success(function(data) {\n\t\t\t\tif (data.success) {\n\t\t\t\t\tlayer.msg(data.msg)\n\t\t\t\t\tgetData()\n\t\t\t\t\tlayer.close(index)\n\t\t\t\t} else {\n\t\t\t\t\tlayer.msg(data.msg)\n\t\t\t\t}\n\t\t\t})\n\n\t\t}, function() {\n\t\t\t// 取消\n\t\t})\n\t}\n\n\t// init()\n\n}])",
+		"edit": "app.controller('path-nameEditCtrl', \n\t[\n\t\t'$scope', \n\t\t'$location', \n\t\t// 'FileUploader', \n\t\tfunction(\n\t\t\t$scope\n\t\t\t,$location\n\t\t\t// ,FileUploader\n\t\t) {\n\n\tvar url = {\n\t\t// imageUpload: BASE_URL + '/after/''' + baseClassName[0].lower() + baseClassName[1:] + '''',\n\t\tsaveData: BASE_URL + '/after/url-name/save',\n\t\tgetData: BASE_URL + '/after/url-name/get'\n\t}\n\n\tfunction getData(id) {\n\t\t$.ajax({\n\t\t\turl : url.getData + '?id=' + id,\n\t\t\ttype : 'GET'\n\t\t}).success(function(result){\n\t\t\tif (result.success) {\n\t\t\t\t$scope.$apply(function(){\n\t\t\t\t\t$scope.formData = result.data\n\t\t\t\t\t// 文本工具\n\t\t\t\t\t// UE.getEditor('desc').setContent($scope.formData.information)\n\t\t\t\t})\n\t\t\t} else {\n\t\t\t\tlayer.msg('数据加载失败，请刷新重试！')\n\t\t\t}\n\t\t})\n\t}\n\n\tfunction init(){\n\t\tvar searchObject = $location.search() || {};\n\n\t\tif (searchObject.id) {\n\t\t\t$scope.titleText = '编辑';\n\t\t\t$scope.submitText = '保存';\n\t\t} else {\n\t\t\t$scope.titleText = '新建';\n\t\t\t$scope.submitText = '增加';\n\t\t\t$scope.formData = {\n\t\t\t\t// 初始化数据\n\t\t\t\t// recomm : false\n\t\t\t}\n\t\t}\n\t}\n\n\t$scope.edit = function() {\n\t\t// 文本工具\n\t\t// $scope.formData.information = UE.getEditor('desc').getContent()\n\t\t// if (!$scope.formData.information || $scope.formData.information == '') {\n\t\t// \tlayer.msg('内容不能为空！')\n\t\t// \treturn\n\t\t// }\n\n\t\t$('#submit').attr('disabled', true)\n\t\t$.ajax({\n\t\t\turl : url.saveData,\n\t\t\tdata : $scope.formData,\n\t\t\ttype : 'POST'\n\t\t}).success(function(result) {\n\t\t\tif(result.success){\n\t\t\t\t// layer.msg(result.msg + '，正在返回...', {\n\t\t\t\t// \ttime: 100\n\t\t\t\t// }, function(){\n\t\t\t\t// \t$scope.back()\n\t\t\t\t// })\n\t\t\t\t$scope.back()\n\t\t\t}else{\n\t\t\t\tlayer.msg(result.msg)\n\t\t\t\t$('#submit').attr('disabled', false)\n\t\t\t}\n\t\t})\n\t}\n\n\n\t$scope.back = function() {\n\t\twindow.history.back()\n\t}\n\n\t// 图片事件\n\t// $scope.removeimage = function() {\n\t// \t$scope.formData.img = $scope.formData.imgUrl = null\n\t// \t$scope.imageisDelete = true\n\t// }\n\n\t// var imageuploader = $scope.imageuploader = new FileUploader({\n\t// \turl: url.imageUpload,\n\t// \tautoUpload: true\n\t// })\n\t// imageuploader.filters.push({\n\t// \tname: 'imageFilter',\n\t// \tfn: function(item, options) {\n\t// \t\tvar type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|'\n\t// \t\treturn '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1\n\t// \t}\n\t// })\n\t// imageuploader.onSuccessItem = function(fileItem, response, status, headers) {\n\t// \tif (response.state != 'SUCCESS') {\n\t// \t\tlayer.msg('上传失败！')\n\t// \t\tfileItem.remove()\n\t// \t\t$scope.removeimage()\n\t// \t\treturn\n\t// \t}\n\t// \t// 直接赋值导致隐藏域出现\n\t// \tvar urlArr = response.url.split('/')\n\t// \t$scope.formData.img = urlArr[urlArr.length - 1]\n\t// \t$scope.imageisDelete = false\n\t// }\n\t// imageuploader.onWhenAddingFileFailed = function(item, filter, options) {\n\t// \tlayer.msg('格式错误')\n\t// }\n\n\t// //定义pc工具栏\n\t// var pcUE = initUeditor()\n\t// //渲染pc引用控件\n\t// pcUE.render('desc')\n\n\t// //ueditor上传图片位置重新定义\n\t// UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl\n\t// //上传图片、视频位置重新定义\n\t// UE.Editor.prototype.getActionUrl = function(action) {\n\t// \tif (action == 'uploadimage') {\n\t// \t\treturn BASE_URL + '/after/comm/attachment/uploadCmsarticleByUeditor'\n\t// \t} else if (action == 'catchimage') {\n\t// \t\treturn BASE_URL + '/after/comm/attachment/uploadCmsarticleCatchImageByUeditor'\n\t// \t} else if (action == 'uploadvideo') {\n\t// \t\treturn BASE_URL + '/after/comm/attachment/uploadCmsarticleByUeditor'\n\t// \t} else {\n\t// \t\treturn this._bkGetActionUrl.call(this, action)\n\t// \t}\n\t// }\n\n\t// UE.getEditor('desc').ready(function(){\n\t// \tUE.getEditor('desc').setHeight(300)\n\t// \tinit()\n\t// })\n\n\t// init()\n\n}])",
+	},
+
+	// 其余信息模板
+	"otherTemp": {
+		"dubboService": "#dubbo service\n<dubbo:service interface=\"server-classService\" ref=\"server-beanService\" protocol=\"dubbo\" registry=\"packageService\"/>\n\n",
+		"dubboClient": "#dubbo client\n<dubbo:reference interface=\"server-classService\" id=\"server-beanService\" protocol=\"dubbo\" registry=\"packageService\" check=\"false\"/>\n\n",
+	},
+
+
+	"format_on_save_extensions": ["sql"]
+}
+
