@@ -45,6 +45,7 @@
 		"integer": "Integer",
 		"bigint": "Integer",
 		"bit": "Integer",
+		"decimal": "BigDecimal",
 	},
 
 	// 默认包名
